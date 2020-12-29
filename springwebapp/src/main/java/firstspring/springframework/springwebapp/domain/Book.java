@@ -20,18 +20,13 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
+
     @ManyToOne
     private Publisher publisher;
+
     @ManyToMany
-    @JoinTable(
-            name = "author_book",
-            joinColumns = {@JoinColumn(
-                    name = "book_id"
-            )},
-            inverseJoinColumns = {@JoinColumn(
-                    name = "author_id"
-            )}
-    )
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet();
 
     public Publisher getPublisher() {
@@ -98,6 +93,6 @@ public class Book {
     }
 
     public String toString() {
-        return "Book{id=" + this.id + ", title='" + this.title + '\'' + ", isbn='" + this.isbn + '\'' + ", authors=" + this.authors + '}';
+        return "Book{id=" + this.id + ", title='" + this.title + '\'' + ", isbn='" + this.isbn + '\'' + '}';
     }
 }

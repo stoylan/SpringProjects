@@ -78,6 +78,6 @@ public class Author {
     }
 
     public String toString() {
-        return "Author{id=" + this.id + ", firstName='" + this.firstName + '\'' + ", lastName='" + this.lastName + '\'' + ", books=" + this.books + '}';
+        return "Author{id=" + this.id + ", firstName='" + this.firstName + '\'' + ", lastName='" + this.lastName + '\'' + '}';
     }
 }
