@@ -1,12 +1,18 @@
 package com.springframework.springdi.controllers;
 
+import com.springframework.springdi.services.GreetingService;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class MyController {
-    public String sayHelloWorld(){
-        System.out.println("Hello World");
 
-        return  "Hi Folks!";
+    private GreetingService greetingService;
+
+    public MyController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    public String sayHelloWorld(){
+        return greetingService.sayGreeting();
     }
 }

@@ -1,9 +1,6 @@
 package com.springframework.springdi;
 
-import com.springframework.springdi.controllers.ConstructorInjectedController;
-import com.springframework.springdi.controllers.MyController;
-import com.springframework.springdi.controllers.PropertyInjectedController;
-import com.springframework.springdi.controllers.SetterInjectedController;
+import com.springframework.springdi.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -14,11 +11,14 @@ public class SpringDiApplication {
 	public static void main(String[] args) {
 
 		ApplicationContext ctx =SpringApplication.run(SpringDiApplication.class, args);
+
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+
+		System.out.println(i18nController.getGreeting());
+
 		MyController MyController = (MyController)ctx.getBean("myController");
 
-		String sayHello = MyController.sayHelloWorld();
-
-		System.out.println(sayHello);
+		System.out.println(MyController.sayHelloWorld());
 
 		System.out.println("-----------Property Injected");
 
