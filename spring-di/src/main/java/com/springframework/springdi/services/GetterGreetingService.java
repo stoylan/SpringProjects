@@ -3,9 +3,9 @@ package com.springframework.springdi.services;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SetterGreetingService implements GreetingService {
+public class GetterGreetingService implements GreetingService {
     @Override
     public String sayGreeting() {
-        return "Hello World - Setter Injected";
+        return "Hello - I was injected by the getter";
     }
 }

@@ -1,0 +1,12 @@
+com:
+  jms:
+    username: JMS Samet
+    password: JMS Sample Password
+    dburl: JMSURL
+
+---
+spring:
+  profiles: de
+com:
+  jms:
+    username: JMS Samet -- DE
