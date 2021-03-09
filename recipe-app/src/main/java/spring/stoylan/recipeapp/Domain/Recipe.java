@@ -25,6 +25,10 @@ public class Recipe {
     private Note note;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredient;
+    @ManyToMany
+    @JoinTable(name="recipe_category",
+            joinColumns = @JoinColumn(name ="recipe_id"),inverseJoinColumns = @JoinColumn(name ="category_id"))
+    private Set<Category> categories;
 
     public Long getID() {
         return ID;
@@ -120,5 +124,13 @@ public class Recipe {
 
     public void setIngredient(Set<Ingredient> ingredient) {
         this.ingredient = ingredient;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
