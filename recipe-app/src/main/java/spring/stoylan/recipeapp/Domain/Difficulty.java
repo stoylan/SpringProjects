@@ -1,5 +1,5 @@
 package spring.stoylan.recipeapp.Domain;
 
-enum Difficulty{
+public enum Difficulty{
     EASY,MODERATE,HARD
 }

@@ -2,6 +2,8 @@ package spring.stoylan.recipeapp.Domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Optional;
+
 @Entity
 public class Ingredient {
     @Id
@@ -14,6 +16,15 @@ public class Ingredient {
 
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure unitOfMeasure;
+    public Ingredient(){
+
+    }
+    public Ingredient(String description, BigDecimal amount, Recipe recipe, UnitOfMeasure unitOfMeasure) {
+        this.description = description;
+        this.amount = amount;
+        this.recipe = recipe;
+        this.unitOfMeasure = unitOfMeasure;
+    }
 
     public Long getId() {
         return id;
