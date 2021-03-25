@@ -1,8 +1,12 @@
 package spring.stoylan.recipeapp.Domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Set;
 
+@Data
+@EqualsAndHashCode(exclude = {"recipes"})
 @Entity
 public class Category {
     @Id
@@ -13,26 +17,20 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
 
+    public Category() {
+    }
+
+
     public Long getId() {
-        return Id;
+        return this.Id;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setId(Long Id) {
+        this.Id = Id;
     }
 
-    public String getDescription() {
-        return description;
+    protected boolean canEqual(final Object other) {
+        return other instanceof Category;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 }
