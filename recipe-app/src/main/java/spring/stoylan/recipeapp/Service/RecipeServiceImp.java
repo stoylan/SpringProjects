@@ -6,6 +6,7 @@ import spring.stoylan.recipeapp.Domain.Recipe;
 import spring.stoylan.recipeapp.Repository.RecipeRepository;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Slf4j
@@ -25,4 +26,13 @@ public class RecipeServiceImp implements RecipeService {
         recipeRepository.findAll().iterator().forEachRemaining(receipes::add);
         return receipes;
     }
+
+    @Override
+    public Recipe getRecipeById(Long id) {
+        log.debug("I'm in the service");
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+        return recipeOptional.get();
+    }
+
+
 }

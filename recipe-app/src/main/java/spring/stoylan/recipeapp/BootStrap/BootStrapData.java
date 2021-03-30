@@ -50,7 +50,10 @@ public class BootStrapData implements ApplicationListener<ContextRefreshedEvent>
         guatamala.setCookTime(0);
         guatamala.setDescription("Guatamala");
         guatamala.setDifficulty(Difficulty.EASY);
-        guatamala.setDirections("Cut the avocado, remove flesh:\n Mash with a fork:\n Add salt, lime juice, and the rest:\n Serve:\n");
+        guatamala.setDirections("Cut the avocado, remove flesh:\n" +
+                " Mash with a fork:\n" +
+                " Add salt, lime juice, and the rest:\n" +
+                " Serve:\n");
         guatamala.setPrepTime(10);
         guatamala.setServings(4);
         guatamala.setSource("simplyrecipes");
