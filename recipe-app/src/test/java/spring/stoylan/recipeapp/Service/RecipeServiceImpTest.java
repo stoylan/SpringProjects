@@ -2,6 +2,7 @@ package spring.stoylan.recipeapp.Service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import spring.stoylan.recipeapp.Domain.Recipe;
@@ -16,6 +17,7 @@ import static org.mockito.Mockito.*;
 
 class RecipeServiceImpTest {
 
+    @InjectMocks
     RecipeServiceImp recipeServiceImp;
 
     @Mock
@@ -25,7 +27,6 @@ class RecipeServiceImpTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        recipeServiceImp = new RecipeServiceImp(recipeRepository);
     }
 
     @Test

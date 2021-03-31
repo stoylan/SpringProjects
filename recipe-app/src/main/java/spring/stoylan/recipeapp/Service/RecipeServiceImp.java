@@ -2,8 +2,12 @@ package spring.stoylan.recipeapp.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import spring.stoylan.recipeapp.Domain.Recipe;
 import spring.stoylan.recipeapp.Repository.RecipeRepository;
+import spring.stoylan.recipeapp.commands.RecipeCommands;
+import spring.stoylan.recipeapp.Converters.RecipeCommandToRecipe;
+import spring.stoylan.recipeapp.Converters.RecipeToRecipeCommand;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -14,9 +18,12 @@ import java.util.Set;
 public class RecipeServiceImp implements RecipeService {
 
     private final RecipeRepository recipeRepository;
-
-    public RecipeServiceImp(RecipeRepository recipeRepository) {
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
+    public RecipeServiceImp(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
 
     @Override
@@ -32,6 +39,17 @@ public class RecipeServiceImp implements RecipeService {
         log.debug("I'm in the service");
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
         return recipeOptional.get();
+    }
+
+    @Override
+    @Transactional
+    public RecipeCommands saveRecipeCommand(RecipeCommands recipeCommands) {
+        Recipe recipe = recipeCommandToRecipe.convert(recipeCommands);
+
+        Recipe savedRecipe = recipeRepository.save(recipe);
+        log.debug("Saved RecipeId : " + savedRecipe.getID());
+
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 
 
